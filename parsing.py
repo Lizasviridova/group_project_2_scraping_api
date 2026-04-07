@@ -27,4 +27,5 @@ if len(news)>0:
     df1 = pd.DataFrame(news)
     if os.path.exists(df):
         df1.to_csv(df,mode='a',header=False,index=False,encoding='utf-8-sig')
-        
+    else:
+        df1.to_csv(df,index=False,encoding='utf-8-sig')
