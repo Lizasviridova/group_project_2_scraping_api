@@ -20,3 +20,6 @@ def parsing_tass_news():
         return news_items
     except:
         return[]
+
+df = 'tass_news(1.1).csv'
+news = parsing_tass_news()
