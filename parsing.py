@@ -23,3 +23,6 @@ def parsing_tass_news():
 
 df = 'tass_news(1.1).csv'
 news = parsing_tass_news()
+if len(news)>0:
+    df1 = pd.DataFrame(news)
+    
