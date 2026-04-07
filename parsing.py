@@ -25,4 +25,6 @@ df = 'tass_news(1.1).csv'
 news = parsing_tass_news()
 if len(news)>0:
     df1 = pd.DataFrame(news)
-    
+    if os.path.exists(df):
+        df1.to_csv(df,mode='a',header=False,index=False,encoding='utf-8-sig')
+        
