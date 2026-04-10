@@ -44,3 +44,35 @@ def get_reactions(msg):
         else:
             parts.append(str(one_reaction.count))
     return total, ', '.join(parts)
+
+async def main():
+    await client.start()
+    rows = []
+    offset_id = 0
+    batch_size = 100
+    request_num = 0
+    stop = False
+
+    while True:
+        msgs = await client.get_messages(channel_name, limit = batch_size, offset_id = offset_id)
+        request_num += 1
+        if len(msgs) == 0:
+            break
+        for msg in msgs:
+            if msg is None:
+                continue
+            if msg.date < date_from:
+                stop = True
+                break
+            text = msg.get_message
+            reactions_count, reactions_detail = get_reactions(msg)
+            row = {'id_post': msg.id, 'date': msg.date, 'text': text, 'views': msg.views, 'reactions_count': reactions_count, 'reactions_detail': reactions_detail, 'forwards': msg.forwards, 'has_media': 0 if msg.media is None else 1, 'media_type': get_media_type(msg), 'links': get_links(text), 'post_url': f'https://t.me/{channel_name}/{msg.id}'}
+            rows.append(row)
+        if stop:
+            break
+        offset_id = msgs[-1].id
+    df = pd.DataFrame(rows)
+    df = df.sort_values('date').reset_index(drop = True)
+    df.to_csv('rbk_posts.csv', index = False)
+    await client.disconnect()
+await main()
