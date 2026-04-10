@@ -8,7 +8,7 @@ def parsing_tass_news():
     a = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
     try:
         response = requests.get(url, headers=a)
-        root = ET.fromsrting(responce.content)
+        root = ET.fromstring(response.content)
         news_items = []
         for item in root.findall('.//item'):
             title = item.find('title').text if item.find('title') is not None else ''
