@@ -205,3 +205,56 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Логи 
+*.log
+logs/
+
+# Данные 
+*.csv
+*.xlsx
+*.json
+*.parquet
+data/
+raw_data/
+processed_data/
+
+# Переменные окружения и ключи
+.env
+.env.local
+*.key
+*.pem
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+venv/
+env/
+.venv/
+
+# Jupyter Notebook
+# .ipynb_checkpoints/
+
+# macOS системные файлы
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+#~
+
+# Файлы с логами Git операций
+*.log
